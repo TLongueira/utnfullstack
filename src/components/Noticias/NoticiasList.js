@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import NoticiaCard from './NoticiaCard';
+import "./noticiasList.css"
 
-export default function NoticiasList({articles,setarticles}) {
-  const [noticias, setNoticias] = useState([])
+export default function NoticiasList({ articles }) {
+  const [paginado, setPaginado] = useState(10)
+  const [mostrarCargarMas, setmostrarCargarMas] = useState(true)
   useEffect(() => {
     console.log(articles);
     // fetch("https://62ffcbd734344b6431014f67.mockapi.io/store/api/usuarios").then(res => res.json().then(data => {
@@ -16,16 +20,37 @@ export default function NoticiasList({articles,setarticles}) {
     //   console.log(data);
     // }))
   }, [])
+  useEffect(() => {
+    if (paginado+10 > articles.length) {
+      setmostrarCargarMas(false)
+    }
+  }, [paginado])
+  
+  let cargarSiguientes = () => {
+    setPaginado((prevState) => prevState + 10)
+
+  }
 
   return (
-    <div>NoticiasList
+    <Container>
+
+      <Row xs={1} md={3} className="g-4">
+        {
+          articles
+            .slice(0, paginado)
+            .map(article => (
+              <Col>
+                <NoticiaCard article={article} />
+              </Col>
+            ))
+        }
+      </Row>
       {
-        articles.map(article => (
-          <div key={article.title}>
-            Hola
-          </div>
-        ))
+        mostrarCargarMas &&
+        <Button className='bloque mt-4 m-auto' onClick={cargarSiguientes} variant="success">
+          <b>Cargar más</b>
+        </Button>
       }
-    </div>
+    </Container>
   )
 }

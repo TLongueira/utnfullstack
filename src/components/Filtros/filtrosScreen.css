@@ -1,0 +1,13 @@
+.selector{
+    display: inline !important;
+}
+.grupoSelectores{
+    display: flex;
+    justify-content: space-between;
+}
+.labelSelect
+{
+    display: flex;
+    flex-direction: column;
+    width: 48% !important;
+}

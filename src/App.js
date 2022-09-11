@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useContext, useReducer } from 'react';
 import { useEffect } from 'react';
 import { actions } from './actions/noticiasActions';
 import './App.css';
@@ -8,9 +8,14 @@ import noticiasReducer from './reducer/noticiasReducer';
 import noticiasContext from './context/noticiasContext'
 
 function App() {
+
   const [state, dispatch] = useReducer(noticiasReducer, {
     data: [],
-    filter: ""
+    filter: {
+      q:"",
+      pais:"",
+      categoria:""
+    }
   });
   useEffect(() => {
     //fetch("https://newsapi.org/v2/top-headlines?country=ar&apiKey=c6f7a287fb6d45e68ca50c958701107d")
@@ -23,6 +28,7 @@ function App() {
         })
       );
   }, [])
+  
 
   {
     if (!state.data) return <div>fetching news...</div>;

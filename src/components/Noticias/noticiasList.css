@@ -1,0 +1,5 @@
+.bloque{
+    display: block !important;
+    border-radius: 10px;
+    width: 50%;
+}
