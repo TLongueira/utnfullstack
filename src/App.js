@@ -18,8 +18,7 @@ function App() {
     }
   });
   useEffect(() => {
-    //fetch("https://newsapi.org/v2/top-headlines?country=ar&apiKey=c6f7a287fb6d45e68ca50c958701107d")
-    fetch("https://62ffcbd734344b6431014f67.mockapi.io/store/api/noticias/1")
+    fetch("https://newsapi.org/v2/top-headlines?country=ar&apiKey=c6f7a287fb6d45e68ca50c958701107d")
       .then((res) => res.json())
       .then((json) =>
         dispatch({
